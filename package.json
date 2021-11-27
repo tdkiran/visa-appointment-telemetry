@@ -20,6 +20,7 @@
   "dependencies": {
     "input": "^1.0.1",
     "telegram": "^1.10.8",
-    "telegram-mtproto": "^2.2.2"
+    "telegram-mtproto": "^2.2.2",
+    "twilio": "^3.71.2"
   }
 }
