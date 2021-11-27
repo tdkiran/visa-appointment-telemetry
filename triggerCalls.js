@@ -29,6 +29,12 @@ async function triggerCalls() {
             to: '+16825602347'
         });
 
+        await client.calls.create({
+            url: 'http://demo.twilio.com/docs/voice.xml',
+            from: '+17409266971',
+            to: '+919842283476'
+        });
+
     } catch (error) {
         console.log(error)
     }
