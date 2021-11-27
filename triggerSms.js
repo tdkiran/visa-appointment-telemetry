@@ -26,6 +26,11 @@ async function triggerSms() {
             from: '+17409266971',
             to: '+16825602347'
         });
+        await client.messages.create({
+            body: `Please check visa appointment ${dateStr}`,
+            from: '+17409266971',
+            to: '+919842283476'
+        });
     } catch (error) {
         console.log(error)
     }
