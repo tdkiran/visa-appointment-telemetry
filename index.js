@@ -2,7 +2,7 @@ const { TelegramClient } = require('telegram')
 const { StringSession } = require('telegram/sessions')
 const alertPeeps = require('./triggerNotification');
 const input = require('input') // npm i input
-const keywords = 'na,iw,available';
+const keywords = 'iw,available';
 
 async function checkMessageAndTriggerAction(client) {
     const msgs = await client.getMessages("@H1B_H4_Visa_Dropbox_slots", {
