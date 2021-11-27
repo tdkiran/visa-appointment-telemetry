@@ -3,7 +3,7 @@ const { StringSession } = require('telegram/sessions')
 const triggerSms = require('./triggerSms');
 const triggerCalls = require('./triggerCalls');
 const input = require('input'); // npm i input
-const keywords = 'na,iw,available,avail';
+const keywords = 'iw,available,avail';
 
 async function checkMessageAndTriggerAction(client) {
     console.log('checkMessageAndTriggerAction')
