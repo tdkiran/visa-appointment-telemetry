@@ -18,7 +18,9 @@ async function checkMessageAndTriggerAction(client) {
     });
 
     if(requireAction) {
+        console.log('alertPeeps')
         await alertPeeps();
+
     } else {
         console.log('No message with required keywords')
     }
