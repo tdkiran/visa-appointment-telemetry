@@ -1,10 +1,12 @@
 const { TelegramClient } = require('telegram')
 const { StringSession } = require('telegram/sessions')
-const alertPeeps = require('./triggerNotification');
-const input = require('input') // npm i input
-const keywords = 'iw,available';
+const triggerSms = require('./triggerSms');
+const triggerCalls = require('./triggerCalls');
+const input = require('input'); // npm i input
+const keywords = 'na,iw,available,avail';
 
 async function checkMessageAndTriggerAction(client) {
+    console.log('checkMessageAndTriggerAction')
     const msgs = await client.getMessages("@H1B_H4_Visa_Dropbox_slots", {
         limit: 50,
     });
@@ -18,8 +20,11 @@ async function checkMessageAndTriggerAction(client) {
     });
 
     if(requireAction) {
-        console.log('alertPeeps')
-        await alertPeeps();
+        console.log('sendign sms')
+        await triggerSms();
+        console.log('call our army')
+        await triggerCalls();
+
 
     } else {
         console.log('No message with required keywords')
@@ -44,7 +49,7 @@ const stringSession = new StringSession('1AQAOMTQ5LjE1NC4xNzUuNTIBu2pOWk/BfI/oUQ
     console.log(client.session.save()) // Save this string to avoid logging in again
     // await client.sendMessage('@H1B_H4_Visa_Dropbox_slots', { message: 'Hello!' });
 
-    setTimeout(checkMessageAndTriggerAction.bind(null, client), 60000);
+    setInterval(checkMessageAndTriggerAction.bind(null, client), 60000);
 
 })()
 
