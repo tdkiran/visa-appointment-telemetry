@@ -1,5 +1,5 @@
-exports.keyWords = ['iw', 'available', 'avail'];
-exports.noOfMessages = 30;
+exports.keyWords = ['iw', 'available', 'avail', 'came'];
+exports.noOfMessages = 25;
 exports.timeFrequency = 60 * 1000;
 
 exports.people = [

@@ -17,6 +17,7 @@ async function checkMessageAndTriggerAction(client) {
     msgs.forEach(msgObj => {
         keyWords.forEach(key => {
             if (
+                !(msgObj.message.toLowerCase().includes('group rules')) &&
                 msgObj.message.toLowerCase().includes(key.toLowerCase())
             ) requireAction = true;
         });
@@ -39,12 +40,12 @@ const apiId = 10290449
 // const apiHash = 'c35151e556566cdf446a915e403a77b0';
 const apiHash = 'd834f091d8fe613e2b96515075d4ebb2';
 
-const stringSession = new StringSession('1AQAOMTQ5LjE1NC4xNzUuNTIBu3luPNe+fJ9WTYKvH6uwHzCGdJQocthpvxGa1D3HsrsPxqVGtkhjwhpxTLsI2qJ5XY3egCvCYbNsiyQc5+XSnBisxoWQ3PlAYGtLm7yWM/KeH9WrjsV8wJQviD0JEVHeAvEA7ghR49ySl04YZaNibKxSGojlrMGki2FjLWDxndvMAgHzRPzVIiGFxzt1IbHGF8AnOSVCxEnQSWoesH8CFgJ3V1xUmBOVkExBtRD0obDeQydAbSUPY4jz3SzDPNleF4XYaub36MDQVnD0MvbNJXs0CJQN2bDP4jy60+pltZ2Mote8sSLpPJva7g9RjtO4E7d8P8SuqfaStzvOSNj/rsA=');
+const stringSession = new StringSession('1BQANOTEuMTA4LjU2LjExMAG7RMJUcZcH9NmXXlkH04pAc5qhG4A4CedkNitPskG1ZREFZI6H8bNF+ko38AWJKNTefEgecnk7u7mq8PgpUGStuudX/BShQ6v3Y6Ybr8W72linQACY3wRGSpALyFDjT0YRHAWeC+9et2Lb9g0EWRPrATegXIgmcG1PVJKuZqtnxK/QmVm8t5yVjlIS9x7gRLktHwkRaYM/pq4am8FRQPQP056pSbUFNw5AW1GB75cCXjbYWQc7Ln0XFqYdMwiVQufO1qhAy+MgRUFGk+FEwphMKuaUMIR/aHejAsFF5srLlKBAJJSiN8cE8bg/XV2VwekbDvulA8QiEkJbMhr0jF5pyg==');
 (async () => {
     console.log('Loading interactive example...')
     const client = new TelegramClient(stringSession, apiId, apiHash, { connectionRetries: 5 })
     await client.start({
-        phoneNumber: async () => await input.text('+17033991806'),
+        phoneNumber: async () => await input.text('phone number'),
         password: async () => await input.text('password?'),
         phoneCode: async () => await input.text('Code'),
         onError: (err) => console.log(err),
