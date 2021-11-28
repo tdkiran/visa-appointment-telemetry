@@ -9,7 +9,7 @@ async function triggerSms() {
         const dateStr = (new Date()).toTimeString();
         const smsJobs = people.map(contact => {
             return client.messages.create({
-                body: `TEST MESSAGE IGNORE. Please check visa appointment ${dateStr}`,
+                body: `Please check visa appointment ${dateStr}`,
                 from: '+17409266971',
                 to: contact.phone
             });
