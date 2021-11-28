@@ -1,41 +1,45 @@
 const { TelegramClient } = require('telegram')
 const { StringSession } = require('telegram/sessions')
+const { keyWords, noOfMessages, timeFrequency } = require('./config');
 const triggerSms = require('./triggerSms');
 const triggerCalls = require('./triggerCalls');
 const input = require('input'); // npm i input
-const keywords = 'iw,available,avail';
+
 
 async function checkMessageAndTriggerAction(client) {
     console.log('checkMessageAndTriggerAction')
     const msgs = await client.getMessages("@H1B_H4_Visa_Dropbox_slots", {
-        limit: 50,
+        limit: noOfMessages,
     });
 
     let requireAction = false;
 
     msgs.forEach(msgObj => {
-        keywords.split(',').forEach(key => {
-            if(msgObj.message.toLowerCase().includes(key.toLowerCase())) requireAction = true;
+        keyWords.forEach(key => {
+            if (
+                msgObj.message.toLowerCase().includes(key.toLowerCase())
+            ) requireAction = true;
         });
     });
 
-    if(requireAction) {
-        console.log('sendign sms')
-        await triggerSms();
-        console.log('call our army')
-        await triggerCalls();
-
-
+    if (requireAction) {
+        console.log('sending sms & calling peeps' + (new Date).toTimeString)
+        const voiceCallJob = triggerCalls();
+        const smsJob = triggerSms();
+        await Promise.allSettled(smsJob, voiceCallJob);
     } else {
         console.log('No message with required keywords')
     }
 }
 
-const apiId = 15924138
+// const apiId = 15924138
+const apiId = 10290449
 
-const apiHash = 'c35151e556566cdf446a915e403a77b0';
 
-const stringSession = new StringSession('1AQAOMTQ5LjE1NC4xNzUuNTIBu2pOWk/BfI/oUQZ2OR/68dUTa8xMwrvOtGhz4wgtxRBX8/Jj/Gll2lrYkrIXtHZ5hHql79XHgEkzHad7Vja4MUFe/cGYYGvP7yoj1knINzIOXluLof7k16n+NP9Gswf/hQ2tuw5DL80+PYAPlUvMxOWcoc6M3QnPE0Q051rtq6RtKwBcaN2UGaYB63Fpwh4BWHhaiOAj/o1gf6AZfdULDg6nPEXwxRvW62dKjFSN8niGH4OOMZM08oGOMHtP4yZeudE1KimFByasIng17qG5v5d11mLIUwQ62hqI8sUwAIvlYirOiydtpm0n+oDurBGfBF0s9l1ibEL53gReQrT231w=');
+// const apiHash = 'c35151e556566cdf446a915e403a77b0';
+const apiHash = 'd834f091d8fe613e2b96515075d4ebb2';
+
+const stringSession = new StringSession('1BQANOTEuMTA4LjU2LjExMAG7oQeOOC67Mf7seXj7+GmTEBtgIIxM58zW+enzse2DE56Ku9Yl9vLejJ9+65zcwIbG/Xi/AUQR+2yiTdVzqdcWvaSe4Ex6nM/4xadxbPyJWfng1qHl1W/bQ7c8b+so1esTdAZMOt99vBCueDRkPLRRvZ7jCYBCoU7ZgjVBXvK56NmjstsBVE757bnp0wV/jz8/Jhwz0Rvc0/QJg8dodeuXLQc8NCikhSVCIe4qnQsp0Z7Ru1q1yOuJasAt5Q8sKicGr+rDG5eDiCZiiZ3Pbq1y438r0ZX+QkeIRAXTHaarrQKZLFjZH15IsocGonavXTH0R+CImga6q4b/YP5Hw3TS9g==');
 (async () => {
     console.log('Loading interactive example...')
     const client = new TelegramClient(stringSession, apiId, apiHash, { connectionRetries: 5 })
@@ -49,7 +53,7 @@ const stringSession = new StringSession('1AQAOMTQ5LjE1NC4xNzUuNTIBu2pOWk/BfI/oUQ
     console.log(client.session.save()) // Save this string to avoid logging in again
     // await client.sendMessage('@H1B_H4_Visa_Dropbox_slots', { message: 'Hello!' });
 
-    setInterval(checkMessageAndTriggerAction.bind(null, client), 60000);
+    setInterval(checkMessageAndTriggerAction.bind(null, client), timeFrequency);
 
 })()
 
