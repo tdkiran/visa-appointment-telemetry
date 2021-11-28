@@ -39,7 +39,7 @@ const apiId = 10290449
 // const apiHash = 'c35151e556566cdf446a915e403a77b0';
 const apiHash = 'd834f091d8fe613e2b96515075d4ebb2';
 
-const stringSession = new StringSession('1BQANOTEuMTA4LjU2LjExMAG7oQeOOC67Mf7seXj7+GmTEBtgIIxM58zW+enzse2DE56Ku9Yl9vLejJ9+65zcwIbG/Xi/AUQR+2yiTdVzqdcWvaSe4Ex6nM/4xadxbPyJWfng1qHl1W/bQ7c8b+so1esTdAZMOt99vBCueDRkPLRRvZ7jCYBCoU7ZgjVBXvK56NmjstsBVE757bnp0wV/jz8/Jhwz0Rvc0/QJg8dodeuXLQc8NCikhSVCIe4qnQsp0Z7Ru1q1yOuJasAt5Q8sKicGr+rDG5eDiCZiiZ3Pbq1y438r0ZX+QkeIRAXTHaarrQKZLFjZH15IsocGonavXTH0R+CImga6q4b/YP5Hw3TS9g==');
+const stringSession = new StringSession('1AQAOMTQ5LjE1NC4xNzUuNTIBu3luPNe+fJ9WTYKvH6uwHzCGdJQocthpvxGa1D3HsrsPxqVGtkhjwhpxTLsI2qJ5XY3egCvCYbNsiyQc5+XSnBisxoWQ3PlAYGtLm7yWM/KeH9WrjsV8wJQviD0JEVHeAvEA7ghR49ySl04YZaNibKxSGojlrMGki2FjLWDxndvMAgHzRPzVIiGFxzt1IbHGF8AnOSVCxEnQSWoesH8CFgJ3V1xUmBOVkExBtRD0obDeQydAbSUPY4jz3SzDPNleF4XYaub36MDQVnD0MvbNJXs0CJQN2bDP4jy60+pltZ2Mote8sSLpPJva7g9RjtO4E7d8P8SuqfaStzvOSNj/rsA=');
 (async () => {
     console.log('Loading interactive example...')
     const client = new TelegramClient(stringSession, apiId, apiHash, { connectionRetries: 5 })
