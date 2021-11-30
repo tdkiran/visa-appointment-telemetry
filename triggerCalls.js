@@ -1,5 +1,5 @@
 const accountSid = 'AC73f08504c3665ec4e1e96f4a4ed2119c';
-const authToken = 'e92b9ad2de95f5d1e8d1f82ad7f734e3';
+const authToken = '2fcde83059fb06be1bd396cb0ac7dc60';
 const client = require('twilio')(accountSid, authToken);
 const { people } = require('./config');
 
@@ -14,7 +14,7 @@ async function triggerCalls() {
             })
         });
 
-        Promise.allSettled(calls);
+        return Promise.allSettled(calls);
 
     } catch (error) {
         console.log(error)

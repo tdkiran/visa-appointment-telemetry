@@ -18,18 +18,22 @@ async function checkMessageAndTriggerAction(client) {
         keyWords.forEach(key => {
             if (
                 !(msgObj.message.toLowerCase().includes('group rules')) &&
-                msgObj.message.toLowerCase().includes(key.toLowerCase())
+                msgObj.message.toLowerCase().includes(key.toLowerCase() ||
+                    msgObj?.photo?.className === 'Photo'
+                )
             ) requireAction = true;
         });
     });
 
     if (requireAction) {
-        console.log('sending sms & calling peeps' + (new Date).toTimeString)
+        console.log('sending sms & calling peeps' + (new Date).toTimeString())
         const voiceCallJob = triggerCalls();
         const smsJob = triggerSms();
-        await Promise.allSettled(smsJob, voiceCallJob);
+        await Promise.allSettled([smsJob, voiceCallJob]);
     } else {
-        console.log('No message with required keywords')
+        console.log(
+            `No message with required keywords ${(new Date).toTimeString()}`
+        )
     }
 }
 
