@@ -30,4 +30,8 @@ exports.people = [
         name: 'Chithappa',
         phone: '+919842283476'
     },
+    {
+        name: 'shiva',
+        phone: '+918144033060'
+    }
 ]
