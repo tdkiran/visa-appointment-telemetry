@@ -1,5 +1,7 @@
 const accountSid = process.env.SID;
 const authToken = process.env.TOKEN;
+console.log(accountSid, authToken);
+
 const client = require('twilio')(accountSid, authToken);
 const { people } = require('./config');
 
